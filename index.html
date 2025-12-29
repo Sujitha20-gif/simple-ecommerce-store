@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple E-commerce Store</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .products {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product {
+      background: white;
+      padding: 15px;
+      width: 200px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      margin-top: 8px;
+      padding: 6px 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    #cart {
+      margin-top: 30px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Simple E-commerce Store</h1>
+
+<div class="products">
+
+  <div class="product">
+    <h2>T-Shirt</h2>
+    <p>Price: ₹499</p>
+    <button onclick="viewDetails('T-Shirt', 499)">View Details</button>
+    <button onclick="addToCart('T-Shirt', 499)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <h2>Jeans</h2>
+    <p>Price: ₹999</p>
+    <button onclick="viewDetails('Jeans', 999)">View Details</button>
+    <button onclick="addToCart('Jeans', 999)">Add to Cart</button>
+  </div>
+
+</div>
+
+<div id="cart">
+  <h3>Shopping Cart</h3>
+  <ul id="cartItems"></ul>
+  <p><b>Total:</b> ₹<span id="total">0</span></p>
+  <button onclick="placeOrder()">Place Order</button>
+</div>
+
+<script>
+  let total = 0;
+
+  function addToCart(name, price) {
+    const item = document.createElement("li");
+    item.innerText = name + " - ₹" + price;
+    document.getElementById("cartItems").appendChild(item);
+
+    total += price;
+    document.getElementById("total").innerText = total;
+  }
+
+  function viewDetails(name, price) {
+    alert(
+      "Product: " + name +
+      "\nPrice: ₹" + price +
+      "\nThis is a quality product."
+    );
+  }
+
+  function placeOrder() {
+    if (total === 0) {
+      alert("Cart is empty!");
+    } else {
+      alert("Order placed successfully!\nTotal Amount: ₹" + total);
+      document.getElementById("cartItems").innerHTML = "";
+      document.getElementById("total").innerText = 0;
+      total = 0;
+    }
+  }
+</script>
+
+</body>
+</html>
+  
+  
